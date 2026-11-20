@@ -1,0 +1,12 @@
+# ChaOS OS image foundation.
+# Bazzite provides the gaming-focused Fedora Atomic desktop base.
+# Keep this image intentionally minimal until each customization is tested.
+FROM ghcr.io/ublue-os/bazzite:stable
+
+LABEL org.opencontainers.image.title="ChaOS"
+LABEL org.opencontainers.image.description="A Bazzite-based gaming and productivity desktop operating system."
+LABEL org.opencontainers.image.source="https://github.com/nastydev6767/ChaOS"
+
+# ChaOS-owned files live here. Do not replace upstream system components
+# until the change has a test plan and a recovery path.
+COPY build_files/ /usr/share/chaos/
