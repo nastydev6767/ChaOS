@@ -1,0 +1,13 @@
+NEXUS CONTROL CENTER — START HERE
+
+1. Extract this ZIP.
+2. Install the .NET 8 SDK if it is not already installed.
+3. Open PowerShell in the extracted NEXUS_Starter folder.
+4. Run:
+   .\build.ps1
+
+To launch after building:
+   dotnet run --project .\NexusControlCenter\NexusControlCenter.csproj
+
+Important: this is a Windows companion-app prototype, not a bootable Linux OS.
+It does not change partitions, boot settings, EFI entries, or restart your PC.

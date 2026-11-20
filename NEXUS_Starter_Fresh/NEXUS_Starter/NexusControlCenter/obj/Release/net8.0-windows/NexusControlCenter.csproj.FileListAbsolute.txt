@@ -1,0 +1,21 @@
+C:\Users\G R Samantaray\Downloads\NEXUS_Starter_Fresh\NEXUS_Starter\NexusControlCenter\bin\Release\net8.0-windows\NEXUS Control Center.exe
+C:\Users\G R Samantaray\Downloads\NEXUS_Starter_Fresh\NEXUS_Starter\NexusControlCenter\bin\Release\net8.0-windows\NEXUS Control Center.deps.json
+C:\Users\G R Samantaray\Downloads\NEXUS_Starter_Fresh\NEXUS_Starter\NexusControlCenter\bin\Release\net8.0-windows\NEXUS Control Center.runtimeconfig.json
+C:\Users\G R Samantaray\Downloads\NEXUS_Starter_Fresh\NEXUS_Starter\NexusControlCenter\bin\Release\net8.0-windows\NEXUS Control Center.dll
+C:\Users\G R Samantaray\Downloads\NEXUS_Starter_Fresh\NEXUS_Starter\NexusControlCenter\bin\Release\net8.0-windows\NEXUS Control Center.pdb
+C:\Users\G R Samantaray\Downloads\NEXUS_Starter_Fresh\NEXUS_Starter\NexusControlCenter\obj\Release\net8.0-windows\MainWindow.baml
+C:\Users\G R Samantaray\Downloads\NEXUS_Starter_Fresh\NEXUS_Starter\NexusControlCenter\obj\Release\net8.0-windows\App.baml
+C:\Users\G R Samantaray\Downloads\NEXUS_Starter_Fresh\NEXUS_Starter\NexusControlCenter\obj\Release\net8.0-windows\MainWindow.g.cs
+C:\Users\G R Samantaray\Downloads\NEXUS_Starter_Fresh\NEXUS_Starter\NexusControlCenter\obj\Release\net8.0-windows\App.g.cs
+C:\Users\G R Samantaray\Downloads\NEXUS_Starter_Fresh\NEXUS_Starter\NexusControlCenter\obj\Release\net8.0-windows\NEXUS Control Center_MarkupCompile.cache
+C:\Users\G R Samantaray\Downloads\NEXUS_Starter_Fresh\NEXUS_Starter\NexusControlCenter\obj\Release\net8.0-windows\NEXUS Control Center.g.resources
+C:\Users\G R Samantaray\Downloads\NEXUS_Starter_Fresh\NEXUS_Starter\NexusControlCenter\obj\Release\net8.0-windows\NexusControlCenter.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\G R Samantaray\Downloads\NEXUS_Starter_Fresh\NEXUS_Starter\NexusControlCenter\obj\Release\net8.0-windows\NexusControlCenter.AssemblyInfoInputs.cache
+C:\Users\G R Samantaray\Downloads\NEXUS_Starter_Fresh\NEXUS_Starter\NexusControlCenter\obj\Release\net8.0-windows\NexusControlCenter.AssemblyInfo.cs
+C:\Users\G R Samantaray\Downloads\NEXUS_Starter_Fresh\NEXUS_Starter\NexusControlCenter\obj\Release\net8.0-windows\NexusControlCenter.csproj.CoreCompileInputs.cache
+C:\Users\G R Samantaray\Downloads\NEXUS_Starter_Fresh\NEXUS_Starter\NexusControlCenter\obj\Release\net8.0-windows\NexusControlCenter.sourcelink.json
+C:\Users\G R Samantaray\Downloads\NEXUS_Starter_Fresh\NEXUS_Starter\NexusControlCenter\obj\Release\net8.0-windows\NEXUS Control Center.dll
+C:\Users\G R Samantaray\Downloads\NEXUS_Starter_Fresh\NEXUS_Starter\NexusControlCenter\obj\Release\net8.0-windows\refint\NEXUS Control Center.dll
+C:\Users\G R Samantaray\Downloads\NEXUS_Starter_Fresh\NEXUS_Starter\NexusControlCenter\obj\Release\net8.0-windows\NEXUS Control Center.pdb
+C:\Users\G R Samantaray\Downloads\NEXUS_Starter_Fresh\NEXUS_Starter\NexusControlCenter\obj\Release\net8.0-windows\NexusControlCenter.genruntimeconfig.cache
+C:\Users\G R Samantaray\Downloads\NEXUS_Starter_Fresh\NEXUS_Starter\NexusControlCenter\obj\Release\net8.0-windows\ref\NEXUS Control Center.dll
