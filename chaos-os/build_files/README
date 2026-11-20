@@ -1,0 +1,4 @@
+ChaOS image marker
+
+This directory is copied into /usr/share/chaos/ in the custom image.
+It is intentionally small in the first milestone.
