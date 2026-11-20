@@ -1,0 +1,38 @@
+name: ChaOS image build
+
+on:
+  push:
+    branches:
+      - main
+      - chaos-os-foundation
+    paths:
+      - "chaos-os/**"
+      - ".github/workflows/chaos-image.yml"
+  pull_request:
+    paths:
+      - "chaos-os/**"
+      - ".github/workflows/chaos-image.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build-image:
+    name: Build Bazzite-derived image
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v4
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Build ChaOS image (CI only)
+        uses: docker/build-push-action@v6
+        with:
+          context: ./chaos-os
+          file: ./chaos-os/Containerfile
+          platforms: linux/amd64
+          push: false
+          tags: chaos:ci
