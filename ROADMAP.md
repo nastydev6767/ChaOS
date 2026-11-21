@@ -61,7 +61,7 @@ ChaOS is a Linux gaming environment based on **Bazzite**, designed to coexist wi
 - [ ] Add safe cleanup for ChaOS-owned VM files only.
 - [ ] Test Bazzite boot, networking, display, input, and performance on Windows hardware.
 - [x] Add Windows CI syntax and safety-invariant checks for the VM PowerShell scripts (CI run pending).
-- [x] Document that this prototype uses virtual VGA and does not provide native GPU passthrough.
+- [x] Document that this prototype uses virtual VGA and does not provide native GPU passthrough.\n- [x] Add a GitHub Actions release workflow to package the VM developer test kit with a SHA-256 checksum (first release run pending).
 
 ### Phase 2 — ChaOS interface
 - [ ] Define visual identity and UI design system.
