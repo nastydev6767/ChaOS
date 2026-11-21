@@ -3,8 +3,7 @@
 # which verifies the package installer hash against its community manifest.
 [CmdletBinding()]
 param(
-    [switch]$Install,
-    [switch]$AllowPreview
+    [switch]$Install
 )
 
 $ErrorActionPreference = "Stop"
@@ -32,9 +31,14 @@ function Find-ChaOSQemu {
         }
     }
 
+    $systemPath = $null
+    $imagePath = $null
+    if ($system) { $systemPath = $system.Source; if (-not $systemPath) { $systemPath = $system.Path } }
+    if ($image) { $imagePath = $image.Source; if (-not $imagePath) { $imagePath = $image.Path } }
+
     [pscustomobject]@{
-        System = if ($system) { $system.Source ?? $system.FullName } else { $null }
-        Image  = if ($image) { $image.Source ?? $image.FullName } else { $null }
+        System = $systemPath
+        Image  = $imagePath
     }
 }
 
@@ -61,10 +65,11 @@ if (-not $found.System -or -not $found.Image) {
     Write-Host "ChaOS will request the QEMU package from the configured WinGet source."
     Write-Host "Package: $PackageId"
     Write-Host "No administrator elevation is requested by this script."
-    Write-Host "WinGet will display package details and ask for any required confirmations."
-    if (-not $AllowPreview) {
-        Write-Host "Preview builds are not requested. Use stable package versions only."
-    }
+    Write-Host "First review the package metadata from the configured WinGet source."
+    & $winget.Source show --exact --id $PackageId --source winget
+    if ($LASTEXITCODE -ne 0) { throw "Could not verify package metadata. Installation was not attempted." }
+    $approval = Read-Host "Install the package shown above? Type YES to continue"
+    if ($approval -cne "YES") { Write-Host "Cancelled. No installation was performed."; exit 1 }
 
     & $winget.Source install --exact --id $PackageId --source winget
     if ($LASTEXITCODE -ne 0) {
