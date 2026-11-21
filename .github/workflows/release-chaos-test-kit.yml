@@ -7,11 +7,6 @@ on:
         description: "Release tag to create (for example v0.1.0-alpha.1)"
         required: true
         default: "v0.1.0-alpha.1"
-      prerelease:
-        description: "Mark this as a prerelease"
-        required: true
-        type: boolean
-        default: true
   push:
     tags:
       - "v*"
@@ -62,7 +57,7 @@ jobs:
           tag_name: ${{ inputs.tag_name || github.ref_name }}
           target_commitish: ${{ github.sha }}
           name: ChaOS ${{ inputs.tag_name || github.ref_name }} — VM Test Kit
-          prerelease: ${{ github.event_name == 'workflow_dispatch' && inputs.prerelease || true }}
+          prerelease: true
           generate_release_notes: true
           body: |
             **Experimental developer preview — VM tooling only.**
