@@ -53,7 +53,7 @@ If QEMU is missing or incomplete, the script exits without changing the host. To
 
 The setup flow:
 1. Uses the exact WinGet package ID `SoftwareFreedomConservancy.QEMU` from the configured `winget` source.
-2. Displays package metadata before requesting a typed `YES) confirmation.
+2. Displays package metadata before requesting a typed `YES` confirmation.
 3. Delegates download/hash validation and installation to WinGet; it does not download or execute a hand-built URL.
 4. Checks that both `qemu-system-x86_64.exe` and `qemu-img.exe` are present and can report their versions.
 
