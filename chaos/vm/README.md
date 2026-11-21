@@ -99,18 +99,23 @@ The script uses a dedicated folder under `%LOCALAPPDATA%\ChaOS\VMs\Bazzite`, def
 The first launch path is now implemented as an explicit PowerShell script. It does not download an ISO automatically; obtain a Bazzite desktop ISO from the [official Bazzite download page](https://bazzite.gg/) and follow the [official checksum guidance](https://docs.bazzite.gg/General/Installation_Guide/install-guide/) before use.
 
 1. Check QEMU:
-   `.chaos\vm\Test-ChaOSQemu.ps1`
+   `.\chaos\vm\Test-ChaOSQemu.ps1`
 2. Preview host resources and firmware:
-   `.chaos\vm\Get-ChaOSVmConfig.ps1`
+   `.\chaos\vm\Get-ChaOSVmConfig.ps1`
 3. Create the empty disposable virtual disk (after reviewing the path):
-   `.chaos\vm\New-ChaOSVmDisk.ps1 -Create`
+   `.\chaos\vm\New-ChaOSVmDisk.ps1 -Create`
 4. Preview the launch plan (replace the ISO path):
-   `.chaos\vm\Start-ChaOSVm.ps1 -IsoPath "C:\\ISO\\bazzite.iso"`
+   `.\chaos\vm\Start-ChaOSVm.ps1 -IsoPath "C:\ISO\bazzite.iso"`
 5. Start the VM only after reviewing the plan:
-   `.chaos\vm\Start-ChaOSVm.ps1 -IsoPath "C:\\ISO\\bazzite.iso" -Start`
+   `.\chaos\vm\Start-ChaOSVm.ps1 -IsoPath "C:\ISO\bazzite.iso" -Start`
 
 The launch script requires a Bazzite ISO, the ChaOS-owned QCOW2 disk, QEMU, and both UEFI CODE and VARS firmware files. It attempts common OVMF filename discovery; if that does not match the installed QEMU package, pass `-FirmwareCodePath` and `-FirmwareVarsTemplatePath` explicitly. It copies the VARS template into the ChaOS VM directory on first start and never writes to the shared template.
 
-The VM uses WHPX with TCG fallback, UEFI, a virtio virtual disk, user-mode NAT networking, and standard virtual VGA. It never passes through a physical disk or GPU. QEMU runs in the foreground; close its VM window to stop the guest. Session logs are written under the ChaOS VM directory.
+The VM uses WHPX with TCG fallback, UEFI, a virtio virtual disk, user-mode NAT networking, and standard virtual VGA. The launch always asks for the typed word `BOOT`, even when a previous UEFI variables file already exists. It never passes through a physical disk or GPU. QEMU runs in the foreground; close its VM window to stop the guest. Session logs are written under the ChaOS VM directory.
 
 **Important:** this is an initial bring-up path, not a validated installer. QEMU option compatibility, UEFI firmware pairing, ISO boot, Bazzite installation, display/input, networking, and shutdown still require execution on a Windows test machine. The VM disk is disposable; install only to the virtual disk shown in the VM, never to a host disk. Do not proceed if the installer shows any host storage.
+
+
+## Automated checks
+
+A Windows GitHub Actions workflow parses every VM PowerShell script and checks key safety invariants (explicit start confirmation, read-only ISO attachment, QCOW2-only guest storage, and absence of host-disk/boot modification commands). This is static validation; it does not prove QEMU launches or Bazzite installs successfully.
