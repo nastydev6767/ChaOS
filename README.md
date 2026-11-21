@@ -28,4 +28,8 @@ Nothing in this repository currently installs Linux, partitions a disk, edits Wi
 4. Never make destructive disk or boot changes automatically.
 5. Clearly distinguish working features from plans and prototypes.
 
-See [the OS foundation notes](chaos-os/README.md) for the current implementation.
+## Project documentation
+
+- [Roadmap](ROADMAP.md) — milestones, status, deliverables, and acceptance criteria.
+- [Development workflow](WORKFLOW.md) — branching, pull requests, testing, definition of done, and safety rules.
+- [OS foundation notes](chaos-os/README.md) — current image implementation and technical boundaries.
