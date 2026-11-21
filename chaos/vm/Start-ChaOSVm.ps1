@@ -14,7 +14,7 @@ $ErrorActionPreference = "Stop"
 function Find-QemuExecutable {
     $command = Get-Command "qemu-system-x86_64.exe" -ErrorAction SilentlyContinue
     if ($command) { return $command.Source }
-    foreach ($root in @("$env:ProgramFiles\qemu", "$env:ProgramFiles\QEMU", "\${env:ProgramFiles(x86)}\qemu", "$env:LOCALAPPDATA\Programs\qemu")) {
+    foreach ($root in @("$env:ProgramFiles\qemu", "$env:ProgramFiles\QEMU", "${env:ProgramFiles(x86)}\qemu", "$env:LOCALAPPDATA\Programs\qemu")) {
         $candidate = Join-Path $root "qemu-system-x86_64.exe"
         if (Test-Path -LiteralPath $candidate) { return $candidate }
     }
@@ -26,7 +26,7 @@ $iso = (Resolve-Path -LiteralPath $IsoPath).Path
 $disk = (Resolve-Path -LiteralPath $DiskPath).Path
 $qemu = Find-QemuExecutable
 if (-not $qemu) { throw "qemu-system-x86_64.exe was not found. Run Test-ChaOSQemu.ps1 first." }
-$firmwareRoots = @("$env:ProgramFiles\qemu", "$env:ProgramFiles\QEMU", "\${env:ProgramFiles(x86)}\qemu", "$env:LOCALAPPDATA\Programs\qemu") | Where-Object { $_ -and (Test-Path -LiteralPath $_) }
+$firmwareRoots = @("$env:ProgramFiles\qemu", "$env:ProgramFiles\QEMU", "${env:ProgramFiles(x86)}\qemu", "$env:LOCALAPPDATA\Programs\qemu") | Where-Object { $_ -and (Test-Path -LiteralPath $_) }
 if (-not $FirmwareCodePath) {
     foreach ($root in $firmwareRoots) {
         $candidate = Get-ChildItem -LiteralPath $root -File -Recurse -ErrorAction SilentlyContinue | Where-Object { $_.Name -match '^(OVMF_CODE.*|edk2-x86_64-code|QEMU_EFI).*\.fd$' } | Select-Object -First 1
@@ -75,7 +75,7 @@ if (Test-Path -LiteralPath $varsPath) {
 }
 $qemuArgs = @(
     "-name", "ChaOS-Bazzite", "-machine", "q35,accel=whpx:tcg", "-cpu", "max",
-    "-smp", "$CpuThreads", "-m", "\${MemoryGiB}G",
+    "-smp", "$CpuThreads", "-m", "${MemoryGiB}G",
     "-drive", "if=pflash,format=raw,readonly=on,file=$code",
     "-drive", "if=pflash,format=raw,file=$varsPath",
     "-drive", "file=$disk,if=virtio,format=qcow2",
