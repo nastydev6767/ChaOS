@@ -1,0 +1,9 @@
+# ChaOS image foundation
+# Start from the standard Bazzite desktop image; keep upstream OS behavior intact.
+# This is an image customization baseline, not yet a complete ChaOS desktop.
+FROM ghcr.io/ublue-os/bazzite:stable
+
+LABEL org.opencontainers.image.title="ChaOS"
+LABEL org.opencontainers.image.description="Bazzite-based dual-OS gaming environment"
+LABEL org.opencontainers.image.source="https://github.com/nastydev6767/ChaOS"
+LABEL io.chaos.project="ChaOS"
