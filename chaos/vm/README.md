@@ -35,3 +35,28 @@ Example: on a 16 GiB RAM / 8-thread host, the default policy reserves 4 GiB RAM 
 ## Current implementation status
 
 The architecture is selected. The Windows VM manager is planned; QEMU/WHPX availability, Bazzite boot, graphics, networking, and performance still need real testing on supported Windows hardware.
+
+
+## QEMU dependency check
+
+Run the read-only check from a normal PowerShell window:
+
+```powershell
+.\chaos\vm\Test-ChaOSQemu.ps1
+```
+
+If QEMU is missing or incomplete, the script exits without changing the host. To start the explicit setup flow:
+
+```powershell
+.\chaos\vm\Test-ChaOSQemu.ps1 -Install
+```
+
+The setup flow:
+1. Uses the exact WinGet package ID `SoftwareFreedomConservancy.QEMU` from the configured `winget` source.
+2. Displays package metadata before requesting a typed `YES) confirmation.
+3. Delegates download/hash validation and installation to WinGet; it does not download or execute a hand-built URL.
+4. Checks that both `qemu-system-x86_64.exe` and `qemu-img.exe` are present and can report their versions.
+
+The script does not request elevation, enable Windows features, create VM files, change PATH persistently, or alter boot/disk configuration. Installation may still require permissions depending on the package's installer scope. If WinGet is unavailable, stop and install/update Microsoft's App Installer through the normal Windows settings/store route; do not use an unofficial installer mirror.
+
+**Validation status:** script committed; execution on a Windows host is still pending. WinGet package availability, installation scope, QEMU paths, and WHPX operation must be verified on the target machine before marking the dependency milestone fully complete.
