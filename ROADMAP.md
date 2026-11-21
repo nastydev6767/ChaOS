@@ -38,9 +38,11 @@ ChaOS is a Linux gaming environment based on **Bazzite**, designed to coexist wi
 
 
 ### Phase 1 — Bazzite foundation and VM prototype
+
+**Status: In Progress** — minimal Bazzite-based image definition, manual GHCR build workflow, and VM validation checklist are committed. CI build and VM boot have not yet been run.
 - [ ] Select a Bazzite variant and document the choice.
-- [ ] Establish a reproducible build/configuration approach following Bazzite/Universal Blue conventions.
-- [ ] Create a VM test plan and baseline boot/install validation.
+- [x] Add initial reproducible Containerfile and manual GitHub Actions build workflow (first CI execution pending).
+- [x] Create disposable-VM validation checklist. [ ] Execute baseline boot and install validation.
 - [ ] Identify supported virtual hardware and document limitations.
 - [ ] Establish versioning and update/recovery expectations.
 
