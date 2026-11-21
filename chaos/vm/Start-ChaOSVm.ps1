@@ -65,11 +65,11 @@ Write-Host "ChaOS Bazzite VM launch plan"
     StartRequested = [bool]$Start
 } | Format-List
 if (-not $Start) { Write-Host "Preview only. Re-run with -Start after checking the ISO, disk and firmware paths."; exit 0 }
+$approval = Read-Host "Start the ChaOS Bazzite VM now? Type BOOT"
+if ($approval -cne "BOOT") { Write-Host "Cancelled. No VM was started."; exit 1 }
 if (Test-Path -LiteralPath $varsPath) {
     Write-Host "Using existing ChaOS-owned UEFI variables file: $varsPath"
 } else {
-    $approval = Read-Host "Start QEMU and create a private copy of UEFI variables in the ChaOS VM folder? Type BOOT"
-    if ($approval -cne "BOOT") { Write-Host "Cancelled. No VM was started."; exit 1 }
     New-Item -ItemType Directory -Path $vmRoot -Force | Out-Null
     Copy-Item -LiteralPath $varsTemplate -Destination $varsPath
 }
