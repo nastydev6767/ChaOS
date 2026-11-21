@@ -60,3 +60,16 @@ The setup flow:
 The script does not request elevation, enable Windows features, create VM files, change PATH persistently, or alter boot/disk configuration. Installation may still require permissions depending on the package's installer scope. If WinGet is unavailable, stop and install/update Microsoft's App Installer through the normal Windows settings/store route; do not use an unofficial installer mirror.
 
 **Validation status:** script committed; execution on a Windows host is still pending. WinGet package availability, installation scope, QEMU paths, and WHPX operation must be verified on the target machine before marking the dependency milestone fully complete.
+
+
+## VM configuration preview
+
+The read-only configuration planner is:
+
+```powershell
+.\chaos\vm\Get-ChaOSVmConfig.ps1
+```
+
+It uses both total and currently free physical memory. Guest RAM is capped by the larger of the configured minimum Windows reserve (4 GiB by default) or 25% of installed RAM, and it also leaves 2 GiB of currently-free memory untouched. CPU allocation leaves the configured host thread reserve (2 by default) whenever the host has enough logical processors. It also reports candidate OVMF/UEFI firmware files and a proposed sparse QCOW2 capacity (80 GiB maximum by default).
+
+This is a preview only: no disk is created, no Windows feature is enabled, and QEMU is not started. Firmware discovery is best-effort and still needs validation against the installed QEMU package on a real Windows machine.
