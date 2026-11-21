@@ -74,12 +74,12 @@ if (Test-Path -LiteralPath $varsPath) {
     Copy-Item -LiteralPath $varsTemplate -Destination $varsPath
 }
 $qemuArgs = @(
-    "-name", "ChaOS-Bazzite", "-machine", "q35,accel=whpx:tcg", "-cpu", "max",
+    "-name", "ChaOS-Bazzite", "-machine", "pc,accel=whpx:tcg", "-cpu", "max",
     "-smp", "$CpuThreads", "-m", "${MemoryGiB}G",
     "-drive", "if=pflash,format=raw,readonly=on,file=$code",
     "-drive", "if=pflash,format=raw,file=$varsPath",
     "-drive", "file=$disk,if=virtio,format=qcow2",
-    "-drive", "file=$iso,media=cdrom,readonly=on",
+    "-drive", "file=$iso,media=cdrom,readonly=on,if=ide",
     "-boot", "menu=on,order=d",
     "-device", "virtio-net-pci,netdev=net0", "-netdev", "user,id=net0",
     "-vga", "std", "-display", "sdl", "-D", $logPath
