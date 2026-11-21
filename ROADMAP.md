@@ -53,7 +53,7 @@ ChaOS is a Linux gaming environment based on **Bazzite**, designed to coexist wi
 - [x] Select QEMU as the open-source virtualization engine; build ChaOS-specific management rather than a new hypervisor.
 - [x] Define aggressive resource allocation with a Windows safety reserve.
 - [x] Add read-only RAM/CPU/QEMU/WHPX detection script.
-- [ ] Add QEMU dependency detection/installation flow with version and signature checks.
+- [x] Add QEMU dependency detection and an explicit WinGet installation flow with package metadata review and installer-hash verification delegated to WinGet (Windows execution still pending).
 - [ ] Create sparse QCOW2 virtual disk and UEFI VM configuration.
 - [ ] Add preview, explicit create/start controls, logs, and cleanup for ChaOS-owned VM files only.
 - [ ] Test Bazzite boot, networking, display, input, and performance on Windows hardware.
@@ -119,7 +119,7 @@ ChaOS is a Linux gaming environment based on **Bazzite**, designed to coexist wi
 
 ## Current status
 
-The repository still contains the Windows WPF NEXUS starter/prototype and does not yet contain a ChaOS Linux image or working dual-OS switcher. The first Driver Lab component exists: a read-only Linux sysfs PCI/USB inventory prototype with fixture-based tests. It has not yet been validated on real Bazzite hardware. The first ChaOS VM Manager components now exist: QEMU/WHPX architecture documentation and a read-only Windows resource planner. The planner does not create a VM. Linux image build, VM boot, shared-storage setup, boot transition, and gaming integrations remain unverified or planned.
+The repository still contains the Windows WPF NEXUS starter/prototype and does not yet contain a ChaOS Linux image or working dual-OS switcher. The first Driver Lab component exists: a read-only Linux sysfs PCI/USB inventory prototype with fixture-based tests. It has not yet been validated on real Bazzite hardware. The ChaOS VM Manager now includes QEMU/WHPX architecture documentation, a read-only Windows resource planner, and a QEMU dependency check with an opt-in WinGet setup flow. The dependency script has not yet been executed on a Windows host; VM creation and launch remain unimplemented. Linux image build, VM boot, shared-storage setup, boot transition, and gaming integrations remain unverified or planned.
 
 ## Definition of done
 
