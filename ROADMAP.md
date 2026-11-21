@@ -54,10 +54,13 @@ ChaOS is a Linux gaming environment based on **Bazzite**, designed to coexist wi
 - [x] Define aggressive resource allocation with a Windows safety reserve.
 - [x] Add read-only RAM/CPU/QEMU/WHPX detection script.
 - [x] Add QEMU dependency detection and an explicit WinGet installation flow with package metadata review and installer-hash verification delegated to WinGet (Windows execution still pending).
-- [x] Add a read-only VM configuration preview for memory/CPU allocation, sparse QCOW2 capacity, and candidate UEFI firmware discovery.\n- [x] Add explicit, non-overwriting sparse QCOW2 virtual-disk creation in a ChaOS-owned folder.\n- [x] Add an explicit UEFI VM launch path with ISO boot, private firmware variables, virtual networking, and session logging (runtime validation pending).
-- [x] Add launch preview and typed-confirmation start controls; VM disk creation is separately confirmed and logs stay in the ChaOS VM folder.\n- [ ] Add safe cleanup for ChaOS-owned VM files only.
-- [ ] Test Bazzite boot, networking, display, input, and performance on Windows hardware.
-- [ ] Document graphics acceleration limits; do not promise native GPU passthrough.
+- [x] Add a read-only VM configuration preview for memory/CPU allocation, sparse QCOW2 capacity, and candidate UEFI firmware discovery.
+- [x] Add explicit, non-overwriting sparse QCOW2 virtual-disk creation in a ChaOS-owned folder.
+- [x] Add an explicit UEFI VM launch path with ISO boot, private firmware variables, virtual networking, and session logging (runtime validation pending).
+- [x] Add launch preview and typed-confirmation start controls; VM disk creation is separately confirmed and logs stay in the ChaOS VM folder.
+- [ ] Add safe cleanup for ChaOS-owned VM files only.
+- [ ] Test Bazzite boot, networking, display, input, and performance on Windows hardware.\n- [x] Add Windows CI syntax and safety-invariant checks for the VM PowerShell scripts (CI run pending).
+- [x] Document that this prototype uses virtual VGA and does not provide native GPU passthrough.
 
 ### Phase 2 — ChaOS interface
 - [ ] Define visual identity and UI design system.
