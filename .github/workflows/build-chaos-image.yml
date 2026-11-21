@@ -26,7 +26,7 @@ jobs:
         id: build-image
         uses: redhat-actions/buildah-build@v2
         with:
-          image: chaos
+          image: ${{ github.repository_owner }}/chaos
           tags: latest ${{ github.sha }}
           containerfiles: |
             ./chaos/image/Containerfile
@@ -37,4 +37,4 @@ jobs:
         with:
           image: ${{ steps.build-image.outputs.image }}
           tags: ${{ steps.build-image.outputs.tags }}
-          registry: ghcr.io/${{ github.repository_owner }}
+          registry: ghcr.io
