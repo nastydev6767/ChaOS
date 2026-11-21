@@ -49,13 +49,13 @@ ChaOS is a Linux gaming environment based on **Bazzite**, designed to coexist wi
 
 ### Phase 1A — ChaOS VM Manager (Windows)
 
-**Status: In Progress** — QEMU/WHPX architecture decision and a read-only host resource planner are committed. VM creation, launch, and Bazzite boot are not implemented or tested yet.
+**Status: In Progress** — QEMU/WHPX architecture decision and a read-only host resource planner are committed. VM disk creation and an explicit UEFI ISO launch path are implemented; actual Bazzite boot/install and Windows runtime validation remain pending.
 - [x] Select QEMU as the open-source virtualization engine; build ChaOS-specific management rather than a new hypervisor.
 - [x] Define aggressive resource allocation with a Windows safety reserve.
 - [x] Add read-only RAM/CPU/QEMU/WHPX detection script.
 - [x] Add QEMU dependency detection and an explicit WinGet installation flow with package metadata review and installer-hash verification delegated to WinGet (Windows execution still pending).
-- [x] Add a read-only VM configuration preview for memory/CPU allocation, sparse QCOW2 capacity, and candidate UEFI firmware discovery.\n- [x] Add explicit, non-overwriting sparse QCOW2 virtual-disk creation in a ChaOS-owned folder.\n- [ ] Add UEFI VM configuration and ISO boot/launch.
-- [ ] Add preview, explicit create/start controls, logs, and cleanup for ChaOS-owned VM files only.
+- [x] Add a read-only VM configuration preview for memory/CPU allocation, sparse QCOW2 capacity, and candidate UEFI firmware discovery.\n- [x] Add explicit, non-overwriting sparse QCOW2 virtual-disk creation in a ChaOS-owned folder.\n- [x] Add an explicit UEFI VM launch path with ISO boot, private firmware variables, virtual networking, and session logging (runtime validation pending).
+- [x] Add launch preview and typed-confirmation start controls; VM disk creation is separately confirmed and logs stay in the ChaOS VM folder.\n- [ ] Add safe cleanup for ChaOS-owned VM files only.
 - [ ] Test Bazzite boot, networking, display, input, and performance on Windows hardware.
 - [ ] Document graphics acceleration limits; do not promise native GPU passthrough.
 
