@@ -73,3 +73,22 @@ The read-only configuration planner is:
 It uses both total and currently free physical memory. Guest RAM is capped by the larger of the configured minimum Windows reserve (4 GiB by default) or 25% of installed RAM, and it also leaves 2 GiB of currently-free memory untouched. CPU allocation leaves the configured host thread reserve (2 by default) whenever the host has enough logical processors. It also reports candidate OVMF/UEFI firmware files and a proposed sparse QCOW2 capacity (80 GiB maximum by default).
 
 This is a preview only: no disk is created, no Windows feature is enabled, and QEMU is not started. Firmware discovery is best-effort and still needs validation against the installed QEMU package on a real Windows machine.
+
+
+## Explicit disposable VM disk creation
+
+Preview the proposed virtual disk without writing files:
+
+```powershell
+.\chaos\vm\New-ChaOSVmDisk.ps1
+```
+
+Create it only after reviewing the preview:
+
+```powershell
+.\chaos\vm\New-ChaOSVmDisk.ps1 -Create
+```
+
+The script uses a dedicated folder under `%LOCALAPPDATA%\ChaOS\VMs\Bazzite`, defaults to an 80 GiB maximum-capacity sparse QCOW2 disk, refuses to overwrite an existing file, checks for at least 5 GiB of free host-drive space, and requires typing `CREATE`. The QCOW2 file grows as the guest writes data; its virtual capacity is not preallocated. It never attaches a physical disk or changes partitions.
+
+**Current limitation:** this creates only an empty virtual disk. UEFI firmware configuration, ISO boot, VM launch, and Bazzite installation are not yet implemented.
