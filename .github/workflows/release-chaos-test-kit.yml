@@ -1,0 +1,78 @@
+name: Package ChaOS VM Test Kit
+
+on:
+  workflow_dispatch:
+    inputs:
+      tag_name:
+        description: "Release tag to create (for example v0.1.0-alpha.1)"
+        required: true
+        default: "v0.1.0-alpha.1"
+      prerelease:
+        description: "Mark this as a prerelease"
+        required: true
+        type: boolean
+        default: true
+  push:
+    tags:
+      - "v*"
+
+permissions:
+  contents: write
+
+jobs:
+  package:
+    name: Package Windows VM test kit
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event_name == 'workflow_dispatch' && github.sha || github.ref }}
+
+      - name: Stage release contents
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p dist/ChaOS-VM-Test-Kit/chaos/vm/tests
+          cp chaos/vm/*.ps1 dist/ChaOS-VM-Test-Kit/chaos/vm/
+          cp chaos/vm/README.md dist/ChaOS-VM-Test-Kit/chaos/vm/
+          cp chaos/vm/tests/*.ps1 dist/ChaOS-VM-Test-Kit/chaos/vm/tests/
+          cp VISION.md ROADMAP.md WORKFLOW.md dist/ChaOS-VM-Test-Kit/
+          cat > dist/ChaOS-VM-Test-Kit/RELEASE-NOTES.txt <<'EOF'
+          ChaOS VM Test Kit — experimental developer preview
+
+          This package contains PowerShell tooling to prepare and launch a Bazzite
+          virtual machine on Windows using QEMU. It is NOT a bootable ChaOS OS image.
+
+          Requirements and instructions: chaos/vm/README.md
+          The Bazzite ISO is intentionally not bundled. Obtain it from the official
+          Bazzite project and verify its checksum independently.
+
+          This release has not yet been validated by a successful end-to-end Windows
+          Bazzite installation. Treat it as an experimental test kit.
+          It never intentionally attaches a host physical disk.
+          EOF
+          cd dist
+          zip -r ../ChaOS-VM-Test-Kit.zip ChaOS-VM-Test-Kit
+          sha256sum ../ChaOS-VM-Test-Kit.zip > ../ChaOS-VM-Test-Kit.zip.sha256
+
+      - name: Create GitHub release and upload test kit
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ inputs.tag_name || github.ref_name }}
+          target_commitish: ${{ github.sha }}
+          name: ChaOS ${{ inputs.tag_name || github.ref_name }} — VM Test Kit
+          prerelease: ${{ github.event_name == 'workflow_dispatch' && inputs.prerelease || true }}
+          generate_release_notes: true
+          body: |
+            **Experimental developer preview — VM tooling only.**
+
+            This is not a bootable ChaOS operating-system image. It packages the current
+            Windows QEMU/Bazzite VM preparation scripts and project documentation.
+            A successful end-to-end Windows Bazzite installation has not yet been validated.
+
+            Read `chaos/vm/README.md` in the archive before running anything. The Bazzite
+            ISO is not included; download it from the official project and verify its checksum.
+          files: |
+            ChaOS-VM-Test-Kit.zip
+            ChaOS-VM-Test-Kit.zip.sha256
