@@ -33,7 +33,7 @@ ChaOS is a Linux gaming environment based on **Bazzite**, designed to coexist wi
 - [x] Establish Windows + ChaOS dual-OS concept and reboot-based switching.
 - [x] Define shared storage as a dedicated cross-OS data area.
 - [x] Add this roadmap and project vision.
-- [ ] Keep WORKFLOW.md aligned with the actual development process.
+- [x] Add WORKFLOW.md with development, testing, and safety practices.
 - [ ] Record architecture decisions (ADRs) when choices have lasting consequences.
 
 
@@ -76,7 +76,7 @@ ChaOS is a Linux gaming environment based on **Bazzite**, designed to coexist wi
 - [ ] Require explicit confirmation for transitions and never imply an app can safely make arbitrary boot changes.
 
 ### Phase 6 — ChaOS Hardware Intelligence / Driver Lab
-- [ ] Inventory hardware identifiers and device categories.
+- [x] Add read-only PCI/USB hardware inventory prototype (initial implementation; validation and expansion remain in progress).
 - [ ] Build a driver/firmware compatibility database with source links and tested versions.
 - [ ] Report native Linux driver, firmware availability, support status, and known issues.
 - [ ] Add diagnostics and compatibility checks before OS transition or setup.
@@ -104,7 +104,7 @@ ChaOS is a Linux gaming environment based on **Bazzite**, designed to coexist wi
 
 ## Current status
 
-The existing repository contains a Windows WPF NEXUS starter/prototype. It is not yet a ChaOS Linux image or a working dual-OS switcher. The Linux image, shared-storage setup, boot transition, gaming integrations, and Driver Lab remain planned until implemented and tested.
+The repository still contains the Windows WPF NEXUS starter/prototype and does not yet contain a ChaOS Linux image or working dual-OS switcher. The first Driver Lab component now exists: a read-only Linux sysfs PCI/USB inventory prototype with fixture-based tests. It has not yet been validated on real Bazzite hardware. Linux image, shared-storage setup, boot transition, and gaming integrations remain planned.
 
 ## Definition of done
 
