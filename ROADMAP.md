@@ -4,7 +4,7 @@
 
 ## Project Summary
 
-ChaOS is a Linux gaming environment based on **Bazzite**, designed to coexist with a user's existing Windows installation. The user can request a transition between Windows and ChaOS; the transition is a reboot into the other operating system, not virtualization or simultaneous operation.
+ChaOS is a Linux gaming environment based on **Bazzite**, designed to coexist with a user's existing Windows installation. The user can request a transition between Windows and ChaOS; the transition is a reboot into the other operating system, not virtualization or simultaneous operation. Virtual machines are for development and testing, not the final dual-boot experience.
 
 ## Core principles
 
@@ -25,6 +25,7 @@ ChaOS is a Linux gaming environment based on **Bazzite**, designed to coexist wi
 4. **Shared storage** — dedicated data area accessible from both OSes; game-library sharing is conditional on launcher/filesystem compatibility.
 5. **ChaOS Hardware Intelligence / Driver Lab** — inventory, compatibility records, diagnostics, and native Linux support extensions.
 6. **ChaOS UI** — gaming-oriented shell/dashboard, launcher, settings, and status experience.
+7. **ChaOS VM Manager** — our Windows-side QEMU management layer for safe development and testing.
 
 ## Roadmap
 
@@ -36,15 +37,27 @@ ChaOS is a Linux gaming environment based on **Bazzite**, designed to coexist wi
 - [x] Add WORKFLOW.md with development, testing, and safety practices.
 - [ ] Record architecture decisions (ADRs) when choices have lasting consequences.
 
-
 ### Phase 1 — Bazzite foundation and VM prototype
 
 **Status: In Progress** — minimal Bazzite-based image definition, manual GHCR build workflow, and VM validation checklist are committed. CI build and VM boot have not yet been run.
 - [ ] Select a Bazzite variant and document the choice.
 - [x] Add initial reproducible Containerfile and manual GitHub Actions build workflow (first CI execution pending).
-- [x] Create disposable-VM validation checklist. [ ] Execute baseline boot and install validation.
+- [x] Create disposable-VM validation checklist.
+- [ ] Execute baseline boot and install validation.
 - [ ] Identify supported virtual hardware and document limitations.
 - [ ] Establish versioning and update/recovery expectations.
+
+### Phase 1A — ChaOS VM Manager (Windows)
+
+**Status: In Progress** — QEMU/WHPX architecture decision and a read-only host resource planner are committed. VM creation, launch, and Bazzite boot are not implemented or tested yet.
+- [x] Select QEMU as the open-source virtualization engine; build ChaOS-specific management rather than a new hypervisor.
+- [x] Define aggressive resource allocation with a Windows safety reserve.
+- [x] Add read-only RAM/CPU/QEMU/WHPX detection script.
+- [ ] Add QEMU dependency detection/installation flow with version and signature checks.
+- [ ] Create sparse QCOW2 virtual disk and UEFI VM configuration.
+- [ ] Add preview, explicit create/start controls, logs, and cleanup for ChaOS-owned VM files only.
+- [ ] Test Bazzite boot, networking, display, input, and performance on Windows hardware.
+- [ ] Document graphics acceleration limits; do not promise native GPU passthrough.
 
 ### Phase 2 — ChaOS interface
 - [ ] Define visual identity and UI design system.
@@ -102,11 +115,11 @@ ChaOS is a Linux gaming environment based on **Bazzite**, designed to coexist wi
 - [ ] Test shared storage on disposable virtual disks.
 - [ ] Test OS-switch UX in a simulated environment.
 - [ ] Review privacy, telemetry, permissions, licensing, and documentation.
-- [ ] Publish release notes and known limitations.
+- [ ] Publish release notes and known issues.
 
 ## Current status
 
-The repository still contains the Windows WPF NEXUS starter/prototype and does not yet contain a ChaOS Linux image or working dual-OS switcher. The first Driver Lab component now exists: a read-only Linux sysfs PCI/USB inventory prototype with fixture-based tests. It has not yet been validated on real Bazzite hardware. Linux image, shared-storage setup, boot transition, and gaming integrations remain planned.
+The repository still contains the Windows WPF NEXUS starter/prototype and does not yet contain a ChaOS Linux image or working dual-OS switcher. The first Driver Lab component exists: a read-only Linux sysfs PCI/USB inventory prototype with fixture-based tests. It has not yet been validated on real Bazzite hardware. The first ChaOS VM Manager components now exist: QEMU/WHPX architecture documentation and a read-only Windows resource planner. The planner does not create a VM. Linux image build, VM boot, shared-storage setup, boot transition, and gaming integrations remain unverified or planned.
 
 ## Definition of done
 
