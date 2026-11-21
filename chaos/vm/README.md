@@ -91,12 +91,12 @@ Create it only after reviewing the preview:
 
 The script uses a dedicated folder under `%LOCALAPPDATA%\ChaOS\VMs\Bazzite`, defaults to an 80 GiB maximum-capacity sparse QCOW2 disk, refuses to overwrite an existing file, checks for at least 5 GiB of free host-drive space, and requires typing `CREATE`. The QCOW2 file grows as the guest writes data; its virtual capacity is not preallocated. It never attaches a physical disk or changes partitions.
 
-**Current limitation:** this creates only an empty virtual disk. UEFI firmware configuration, ISO boot, VM launch, and Bazzite installation are not yet implemented.
+**Current limitation:** this creates only an empty virtual disk. Use the launch workflow below to boot an installer ISO; actual boot/install has not yet been validated on Windows.
 
 
 ## Bazzite ISO boot and VM launch
 
-The first launch path is now implemented as an explicit PowerShell script. It does not download an ISO automatically; obtain a Bazzite desktop ISO from the official Bazzite download page, then verify it using the published checksum before use.
+The first launch path is now implemented as an explicit PowerShell script. It does not download an ISO automatically; obtain a Bazzite desktop ISO from the [official Bazzite download page](https://bazzite.gg/) and follow the [official checksum guidance](https://docs.bazzite.gg/General/Installation_Guide/install-guide/) before use.
 
 1. Check QEMU:
    `.chaos\vm\Test-ChaOSQemu.ps1`
