@@ -119,3 +119,10 @@ The VM uses WHPX with TCG fallback, UEFI, a virtio virtual disk, user-mode NAT n
 ## Automated checks
 
 A Windows GitHub Actions workflow parses every VM PowerShell script and checks key safety invariants (explicit start confirmation, read-only ISO attachment, QCOW2-only guest storage, and absence of host-disk/boot modification commands). This is static validation; it does not prove QEMU launches or Bazzite installs successfully.
+
+
+## GitHub releases
+
+The `Package ChaOS VM Test Kit` workflow creates an experimental prerelease containing the Windows VM PowerShell scripts, VM instructions, and project planning documents. It attaches a ZIP and SHA-256 checksum to the GitHub Release. Run it from **Actions → Package ChaOS VM Test Kit → Run workflow**, using the current `main` branch and the proposed tag `v0.1.0-alpha.1`.
+
+This package is a developer test kit, **not a bootable ChaOS ISO**. It does not include Bazzite itself. The release is explicitly marked as a prerelease because end-to-end Windows VM installation has not been validated.
